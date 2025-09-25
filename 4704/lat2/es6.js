@@ -135,3 +135,17 @@ function sum(a, b) {
 //ES6 - function
 const jml=(a, b) => a + b;
 console.log(`jumlah 10 + 9 = ${jml(10, 9)}`);
+
+//ES6 - Array Method map, filter, reduce
+//map
+const listNamaMhs = listMahasiswa2.map((m) => m.nama);
+
+console.log(listNamaMhs);
+
+//filter
+const mahasiswaAktif = listMahasiswa2.filter((m) => m.status === true);
+console.log(mahasiswaAktif);
+
+//reduce
+const totalNilaiTugasAllMatkul= mahasiswa.matKul.reduce((total, m) => total + m.tugas, 0);
+console.log(totalNilaiTugasAllMatkul);
