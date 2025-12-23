@@ -1,37 +1,56 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Navigate } from "react-router-dom";
 import usersData from "../data/users.json";
-import { toastSuccess } from "../utils/toastHelper.jsx";
+import { toastSuccess, toastError } from "../utils/toastHelper.jsx";
+import { useAuthStateContext } from "../utils/contexts/AuthContext";
 
 const Login = () => {
+	const { user, setUser } = useAuthStateContext();
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 	const [remember, setRemember] = useState(false);
 	const [error, setError] = useState("");
 	const navigate = useNavigate();
 
+	// Redirect jika sudah login
+	if (user) {
+		return <Navigate to="/admin/dashboard" replace />;
+	}
+
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		setError("");
 		
-		// Validasi dengan data dummy
-		const user = usersData.find(
-			(u) => u.username === username && u.password === password
-		);
-		
-		if (user) {
-			// Simpan data user ke localStorage
-			localStorage.setItem("user", JSON.stringify({
-				id: user.id,
-				username: user.username,
-				nama: user.nama,
-				role: user.role
-			}));
+		try {
+			// Validasi dengan data dummy
+			const foundUser = usersData.find(
+				(u) => u.username === username && u.password === password
+			);
 			
-			toastSuccess("Login berhasil!");
-			navigate("/admin/dashboard");
-		} else {
-			setError("Username atau password salah!");
+			if (foundUser) {
+				// Simpan data user ke context (otomatis ke localStorage juga)
+				setUser({
+					id: foundUser.id,
+					username: foundUser.username,
+					nama: foundUser.nama,
+					role: foundUser.role,
+					permission: foundUser.permission,
+					progress: foundUser.progress
+				});
+				
+				toastSuccess("Login berhasil!");
+				
+				// Beri waktu sebentar untuk context update
+				setTimeout(() => {
+					navigate("/admin/dashboard");
+				}, 100);
+			} else {
+				setError("Username atau password salah!");
+				toastError("Username atau password salah!");
+			}
+		} catch (err) {
+			setError("Terjadi kesalahan saat login");
+			toastError(err.message || "Terjadi kesalahan saat login");
 		}
 	};
 

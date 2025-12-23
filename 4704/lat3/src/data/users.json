@@ -1,16 +1,51 @@
 [
   {
     "id": 1,
-    "username": "admin",
-    "password": "admin123",
-    "nama": "Administrator",
-    "role": "admin"
+    "username": "mahasiswa1",
+    "password": "12345",
+    "nama": "Andi Wijaya",
+    "role": "mahasiswa",
+    "progress": [],
+    "permission": [
+      "dashboard.page",
+      "kelas.page",
+      "kelas.read"
+    ]
   },
   {
     "id": 2,
-    "username": "user",
-    "password": "user123",
-    "nama": "User Biasa",
-    "role": "user"
+    "username": "mahasiswa2",
+    "password": "12345",
+    "nama": "Siti Nurhaliza",
+    "role": "mahasiswa",
+    "progress": [],
+    "permission": [
+      "dashboard.page",
+      "kelas.page",
+      "kelas.read"
+    ]
+  },
+  {
+    "id": 3,
+    "username": "admin",
+    "password": "admin123",
+    "nama": "Administrator",
+    "role": "admin",
+    "progress": [],
+    "permission": [
+      "dashboard.page",
+      "mahasiswa.page",
+      "mahasiswa.read",
+      "mahasiswa.create",
+      "mahasiswa.update",
+      "mahasiswa.delete",
+      "kelas.page",
+      "kelas.read",
+      "rencana-studi.page",
+      "rencana-studi.read",
+      "rencana-studi.create",
+      "rencana-studi.update",
+      "rencana-studi.delete"
+    ]
   }
 ]

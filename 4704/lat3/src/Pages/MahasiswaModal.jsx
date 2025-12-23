@@ -3,23 +3,27 @@ import Form from "../Components/molecules/Form";
 import Input from "../Components/atoms/Input";
 import Label from "../Components/atoms/Label";
 import Button from "../Components/atoms/Button";
-import { toastError, toastSuccess } from "../utils/toastHelper.jsx";
+import { toastError } from "../utils/toastHelper.jsx";
 
-const MahasiswaModal = ({ isModalOpen, onClose, onSubmit, selectedMahasiswa, mahasiswa = [] }) => {
-  const [form, setForm] = useState({ nama: "", nim: "", aktif: true });
+const MahasiswaModal = ({ isModalOpen, onClose, onSubmit, selectedMahasiswa }) => {
+  const [form, setForm] = useState({ name: "", nim: "", max_sks: 0 });
 
   useEffect(() => {
     if (selectedMahasiswa) {
-      setForm({ nama: selectedMahasiswa.nama || "", nim: selectedMahasiswa.nim || "", aktif: !!selectedMahasiswa.aktif });
+      setForm({ 
+        name: selectedMahasiswa.name || "", 
+        nim: selectedMahasiswa.nim || "", 
+        max_sks: selectedMahasiswa.max_sks || 0 
+      });
     } else {
-      setForm({ nama: "", nim: "", aktif: true });
+      setForm({ name: "", nim: "", max_sks: 0 });
     }
   }, [selectedMahasiswa]);
 
   useEffect(() => {
     // optional: when modal closed reset form
     if (!isModalOpen && !selectedMahasiswa) {
-      setForm({ nama: "", nim: "", aktif: true });
+      setForm({ name: "", nim: "", max_sks: 0 });
     }
   }, [isModalOpen, selectedMahasiswa]);
 
@@ -27,8 +31,7 @@ const MahasiswaModal = ({ isModalOpen, onClose, onSubmit, selectedMahasiswa, mah
     // support both synthetic events and manual change objects
     if (e && e.target) {
       const { name, value } = e.target;
-      const parsed = value === "true" ? true : value === "false" ? false : value;
-      setForm((f) => ({ ...f, [name]: parsed }));
+      setForm((f) => ({ ...f, [name]: value }));
     } else if (typeof e === "object") {
       setForm((f) => ({ ...f, ...e }));
     }
@@ -37,22 +40,14 @@ const MahasiswaModal = ({ isModalOpen, onClose, onSubmit, selectedMahasiswa, mah
   const handleSubmit = (ev) => {
     ev && ev.preventDefault && ev.preventDefault();
     // basic validation
-    if (!form.nim || !form.nama) {
-      toastError('NIM dan Nama wajib diisi');
-      return;
-    }
-
-    // unique NIM validation: check if another mahasiswa (different id) uses same nim
-    const duplicate = mahasiswa.find((m) => m.nim === form.nim && (!selectedMahasiswa || m.id !== selectedMahasiswa.id));
-    if (duplicate) {
-      toastError('NIM sudah digunakan oleh mahasiswa lain');
+    if (!form.nim || !form.name || !form.max_sks) {
+      toastError('NIM, Nama, dan Max SKS wajib diisi');
       return;
     }
 
     onSubmit(form);
-    toastSuccess('Data berhasil disimpan');
     // keep modal controlled by parent; but reset form locally
-    setForm({ nama: "", nim: "", aktif: true });
+    setForm({ name: "", nim: "", max_sks: 0 });
   };
 
   if (!isModalOpen) return null;
@@ -79,22 +74,27 @@ const MahasiswaModal = ({ isModalOpen, onClose, onSubmit, selectedMahasiswa, mah
           </div>
 
           <div>
-            <Label htmlFor="nama">Nama</Label>
-            <Input type="text" name="nama" value={form.nama} onChange={(e) => handleChange(e)} placeholder="Masukkan Nama" required />
+            <Label htmlFor="name">Nama</Label>
+            <Input 
+              type="text" 
+              name="name" 
+              value={form.name} 
+              onChange={(e) => handleChange(e)} 
+              placeholder="Masukkan Nama" 
+              required 
+            />
           </div>
 
           <div>
-            <Label htmlFor="aktif">Status</Label>
-            <div className="mt-1">
-              <label className="inline-flex items-center mr-4">
-                <input type="radio" name="aktif" value="true" checked={form.aktif === true} onChange={() => handleChange({ target: { name: "aktif", value: "true" } })} className="mr-2" />
-                Aktif
-              </label>
-              <label className="inline-flex items-center">
-                <input type="radio" name="aktif" value="false" checked={form.aktif === false} onChange={() => handleChange({ target: { name: "aktif", value: "false" } })} className="mr-2" />
-                Tidak Aktif
-              </label>
-            </div>
+            <Label htmlFor="max_sks">Max SKS</Label>
+            <Input
+              type="number"
+              name="max_sks"
+              value={form.max_sks}
+              onChange={(e) => handleChange(e)}
+              placeholder="Masukkan Max SKS"
+              required
+            />
           </div>
 
           <div className="flex justify-end space-x-2">

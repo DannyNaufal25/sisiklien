@@ -14,4 +14,20 @@ export const confirm = (title = 'Konfirmasi', text = 'Apakah Anda yakin?') =>
     cancelButtonText: 'Batal',
   }).then((res) => !!res.isConfirmed);
 
+export const confirmDelete = (onConfirm) => {
+  return Swal.fire({
+    title: 'Konfirmasi Hapus',
+    text: 'Apakah Anda yakin ingin menghapus data ini?',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonText: 'Ya, Hapus',
+    cancelButtonText: 'Batal',
+    confirmButtonColor: '#d33',
+  }).then((res) => {
+    if (res.isConfirmed && onConfirm) {
+      onConfirm();
+    }
+  });
+};
+
 export default Swal;
