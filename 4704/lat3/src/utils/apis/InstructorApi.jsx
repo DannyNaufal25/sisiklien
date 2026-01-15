@@ -120,6 +120,7 @@ export const InstructorApi = {
   },
 
   // Get score distribution
+  // eslint-disable-next-line no-unused-vars
   getScoreDistribution: (classId) => {
     return new Promise((resolve) => {
       setTimeout(() => {

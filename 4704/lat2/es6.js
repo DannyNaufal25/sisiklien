@@ -149,3 +149,77 @@ console.log(mahasiswaAktif);
 //reduce
 const totalNilaiTugasAllMatkul= mahasiswa.matKul.reduce((total, m) => total + m.tugas, 0);
 console.log(totalNilaiTugasAllMatkul);
+
+//show all object mahasiswa
+console.log(mahasiswa);
+
+//add object mahasiswa baru
+
+// 1. show() – Menampilkan semua data mahasiswa
+function show() {
+    listMahasiswa2.forEach((mhs, i) => {
+        console.log(`Mahasiswa ke-${i + 1}:`);
+        console.log(`NIM: ${mhs.nim}`);
+        console.log(`Nama: ${mhs.nama}`);
+        console.log(`Umur: ${mhs.umur}`);
+        console.log(`Status: ${mhs.status ? "Aktif" : "Tidak Aktif"}`);
+        console.log("Mata Kuliah:");
+        mhs.matKul.forEach((mk) => {
+            console.log(`  - ${mk.matkulNama} (Tugas: ${mk.tugas}, UTS: ${mk.uts}, UAS: ${mk.uas})`);
+        });
+        console.log("-----");
+    });
+}
+// Contoh pemanggilan:
+show();
+
+// 2. add() – Menambah mahasiswa baru ke listMahasiswa2
+function add(mahasiswaBaru) {
+    listMahasiswa2.push(mahasiswaBaru);
+    console.log('Mahasiswa baru berhasil ditambahkan:');
+    console.log(mahasiswaBaru);
+}
+// Contoh pemanggilan:
+
+add({
+    nim: "A11.2022.14495",
+    nama: "Peter Parker",
+    umur: 20,
+    status: true,
+    matKul: [
+        { matkulId: 4707, matkulNama: "Web Programming", tugas: 88, uts: 92, uas: 94 }
+    ]
+});
+
+// 3. update() – Mengupdate informasi mahasiswa tertentu berdasarkan NIM
+function update(nim, dataBaru) {
+    const idx = listMahasiswa2.findIndex(mhs => mhs.nim === nim);
+    if (idx !== -1) {
+        listMahasiswa2[idx] = { ...listMahasiswa2[idx], ...dataBaru };
+        console.log(`Data mahasiswa dengan NIM ${nim} berhasil diupdate.`);
+        console.log(listMahasiswa2[idx]);
+    } else {
+        console.log(`Mahasiswa dengan NIM ${nim} tidak ditemukan.`);
+    }
+}
+// Contoh pemanggilan:
+
+update("A11.2022.14492", { nama: "Naufal Ramakkk", umur: 22 });
+
+// 4. deleteById() – Menghapus mahasiswa berdasarkan NIM
+function deleteById(nim) {
+    const idx = listMahasiswa2.findIndex(mhs => mhs.nim === nim);
+    if (idx !== -1) {
+        const deleted = listMahasiswa2.splice(idx, 1);
+        console.log(`Mahasiswa dengan NIM ${nim} berhasil dihapus.`);
+        console.log(deleted[0]);
+    } else {
+        console.log(`Mahasiswa dengan NIM ${nim} tidak ditemukan.`);
+    }
+}
+// Contoh pemanggilan:
+deleteById("A11.2022.14495");
+
+
+
+

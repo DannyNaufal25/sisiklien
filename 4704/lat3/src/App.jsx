@@ -25,16 +25,18 @@ import AuthLayout from "./Components/templates/AuthLayout";
 import AdminLayout from "./Components/templates/AdminLayout";
 import ProtectedRoute from "./Components/ProtectedRoute";
 import PageNotFound from "./Pages/PageNotFound";
+import ErrorBoundary from "./Components/ErrorBoundary";
 import { AuthProvider } from "./utils/contexts/AuthContext";
 
 const queryClient = new QueryClient();
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <AuthProvider>
-        <BrowserRouter>
-          <Routes>
+    <ErrorBoundary>
+      <QueryClientProvider client={queryClient}>
+        <AuthProvider>
+          <BrowserRouter>
+            <Routes>
         {/* Auth Routes */}
         <Route element={<AuthLayout />}>
           <Route path="/login" element={<Login />} />
@@ -85,5 +87,6 @@ createRoot(document.getElementById("root")).render(
       </BrowserRouter>
     </AuthProvider>
     </QueryClientProvider>
+    </ErrorBoundary>
   </StrictMode>
 );
