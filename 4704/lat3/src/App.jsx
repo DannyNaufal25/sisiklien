@@ -4,7 +4,8 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import "./App.css";
 import Login from "./Pages/Login";
-import Dashboard from "./Pages/Dashboard";
+
+import AnalyticsDashboard from "./Pages/AnalyticsDashboard";
 import Mahasiswa from "./Pages/Mahasiswa";
 import MahasiswaDetail from "./Pages/MahasiswaDetail";
 import Kelas from "./Pages/Kelas";
@@ -38,7 +39,7 @@ createRoot(document.getElementById("root")).render(
           }
         >
           <Route index element={<Navigate to="/admin/dashboard" replace />} />
-          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="dashboard" element={<AnalyticsDashboard />} />
           <Route path="mahasiswa" element={<Mahasiswa />} />
           <Route path="mahasiswa/:id" element={<MahasiswaDetail />} />
           <Route path="kelas" element={<Kelas />} />

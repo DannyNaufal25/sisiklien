@@ -32,7 +32,7 @@ const Sidebar = () => {
               }`
             }
           >
-            <span className="text-lg">🏠</span>
+            <span className="text-lg">📊</span>
             <span className="menu-text hidden lg:inline">Dashboard</span>
           </NavLink>
         )}

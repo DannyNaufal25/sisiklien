@@ -44,7 +44,16 @@ const Dashboard = () => {
 
   return (
     <div className="space-y-6">
-      <h1 className="text-2xl font-bold text-gray-800">Dashboard</h1>
+      <div className="flex justify-between items-center">
+        <h1 className="text-2xl font-bold text-gray-800">Dashboard</h1>
+        <button
+          onClick={() => navigate("/admin/analytics")}
+          className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition duration-200 flex items-center space-x-2"
+        >
+          <span>📊</span>
+          <span>Lihat Analitik Pembelajaran</span>
+        </button>
+      </div>
       
       <Card>
         <h2 className="text-xl font-semibold mb-4">Selamat Datang, {user.nama || "User"}!</h2>
