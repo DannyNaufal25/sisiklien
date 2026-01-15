@@ -1,4 +1,4 @@
-import { useReducer, useEffect, useCallback } from "react";
+import { useReducer, useCallback } from "react";
 import {
   forumReducer,
   initialForumState,

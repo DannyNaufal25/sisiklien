@@ -123,7 +123,7 @@ export const useQuizTaking = (quiz) => {
 
   const isQuestionAnswered = useCallback(
     (questionId) => {
-      return state.answers.hasOwnProperty(questionId);
+      return Object.prototype.hasOwnProperty.call(state.answers, questionId);
     },
     [state.answers]
   );
@@ -165,7 +165,7 @@ export const useQuizTaking = (quiz) => {
     goToQuestion,
     answerQuestion,
     toggleFlag,
-    showReview: showReview,
+    toggleReviewMode: showReview,
     hideReview,
     handleSubmitQuiz,
     resetQuiz,
