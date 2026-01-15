@@ -19,6 +19,7 @@ import Forum from "./Pages/Forum";
 import ForumThread from "./Pages/ForumThread";
 import ForumNewThread from "./Pages/ForumNewThread";
 import UserReputation from "./Pages/UserReputation";
+import Pencapaian from "./Pages/Pencapaian";
 import AuthLayout from "./Components/templates/AuthLayout";
 import AdminLayout from "./Components/templates/AdminLayout";
 import ProtectedRoute from "./Components/ProtectedRoute";
@@ -68,6 +69,9 @@ createRoot(document.getElementById("root")).render(
           <Route path="forum/new" element={<ForumNewThread />} />
           <Route path="forum/:threadId" element={<ForumThread />} />
           <Route path="reputation" element={<UserReputation />} />
+
+          {/* Pencapaian & Gamifikasi */}
+          <Route path="pencapaian" element={<Pencapaian />} />
         </Route>
 
   {/* Default Route */}
