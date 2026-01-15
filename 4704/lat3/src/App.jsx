@@ -15,6 +15,10 @@ import QuizBuilder from "./Pages/QuizBuilder";
 import QuizTaking from "./Pages/QuizTaking";
 import QuizResult from "./Pages/QuizResult";
 import QuizAnalytics from "./Pages/QuizAnalytics";
+import Forum from "./Pages/Forum";
+import ForumThread from "./Pages/ForumThread";
+import ForumNewThread from "./Pages/ForumNewThread";
+import UserReputation from "./Pages/UserReputation";
 import AuthLayout from "./Components/templates/AuthLayout";
 import AdminLayout from "./Components/templates/AdminLayout";
 import ProtectedRoute from "./Components/ProtectedRoute";
@@ -58,6 +62,12 @@ createRoot(document.getElementById("root")).render(
           <Route path="quiz/:quizId/take" element={<QuizTaking />} />
           <Route path="quiz/:quizId/result" element={<QuizResult />} />
           <Route path="quiz/:quizId/analytics" element={<QuizAnalytics />} />
+
+          {/* Forum Routes */}
+          <Route path="forum" element={<Forum />} />
+          <Route path="forum/new" element={<ForumNewThread />} />
+          <Route path="forum/:threadId" element={<ForumThread />} />
+          <Route path="reputation" element={<UserReputation />} />
         </Route>
 
   {/* Default Route */}
