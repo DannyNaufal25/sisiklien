@@ -126,6 +126,18 @@ const Sidebar = () => {
           <span className="text-lg">🎯</span>
           <span className="menu-text hidden lg:inline">Pencapaian</span>
         </NavLink>
+
+        <NavLink
+          to="/admin/instruktur"
+          className={({ isActive }) =>
+            `flex items-center space-x-2 px-4 py-2 rounded hover:bg-blue-700 transition ${
+              isActive ? "bg-blue-700 font-semibold" : ""
+            }`
+          }
+        >
+          <span className="text-lg">👨‍🏫</span>
+          <span className="menu-text hidden lg:inline">Dashboard Instruktur</span>
+        </NavLink>
       </nav>
       <div className="p-4 border-t border-blue-700">
         <button

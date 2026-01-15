@@ -20,6 +20,7 @@ import ForumThread from "./Pages/ForumThread";
 import ForumNewThread from "./Pages/ForumNewThread";
 import UserReputation from "./Pages/UserReputation";
 import Pencapaian from "./Pages/Pencapaian";
+import Instruktur from "./Pages/Instruktur";
 import AuthLayout from "./Components/templates/AuthLayout";
 import AdminLayout from "./Components/templates/AdminLayout";
 import ProtectedRoute from "./Components/ProtectedRoute";
@@ -72,6 +73,9 @@ createRoot(document.getElementById("root")).render(
 
           {/* Pencapaian & Gamifikasi */}
           <Route path="pencapaian" element={<Pencapaian />} />
+
+          {/* Instructor Dashboard */}
+          <Route path="instruktur" element={<Instruktur />} />
         </Route>
 
   {/* Default Route */}
