@@ -9,10 +9,6 @@ const UserReputation = () => {
 
   const currentUser = JSON.parse(localStorage.getItem("user") || "{}");
 
-  useEffect(() => {
-    loadReputationData();
-  }, []);
-
   const loadReputationData = async () => {
     try {
       const data = await ForumApi.getUserReputation(currentUser.id || 1);
@@ -26,6 +22,11 @@ const UserReputation = () => {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    loadReputationData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const formatDate = (dateStr) => {
     const date = new Date(dateStr);

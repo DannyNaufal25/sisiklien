@@ -80,11 +80,6 @@ const Forum = () => {
     return date.toLocaleDateString("id-ID");
   };
 
-  const getCategoryColor = (categoryId) => {
-    const category = categories.find((c) => c.id === categoryId);
-    return category?.color || "gray";
-  };
-
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-screen">

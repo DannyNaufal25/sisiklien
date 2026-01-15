@@ -259,7 +259,54 @@ export const ForumApi = {
     });
   },
 
+  // Get user reputation data
+  getUserReputation: (userId) => {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        // Calculate reputation data from forum activity
+        const userThreads = forumThreads.filter(
+          (t) => t.author.id === userId
+        );
+        const userReplies = forumReplies.filter(
+          (r) => r.author.id === userId
+        );
+        const acceptedAnswers = userReplies.filter((r) => r.isAccepted);
+
+        // Calculate total points
+        let totalPoints = 0;
+        totalPoints += userThreads.length * 10; // +10 per thread
+        totalPoints += userReplies.length * 5; // +5 per reply
+        totalPoints += acceptedAnswers.length * 15; // +15 per accepted answer
+        
+        // Add upvote points
+        userReplies.forEach((r) => {
+          totalPoints += r.votes * 2; // +2 per upvote
+        });
+
+        // Determine current badge
+        let currentBadge = "Pemula";
+        if (totalPoints >= 2500) currentBadge = "Legend";
+        else if (totalPoints >= 1000) currentBadge = "Master";
+        else if (totalPoints >= 500) currentBadge = "Ahli";
+        else if (totalPoints >= 100) currentBadge = "Kontributor";
+
+        const reputationData = {
+          userId,
+          totalPoints,
+          currentBadge,
+          threadsCreated: userThreads.length,
+          repliesPosted: userReplies.length,
+          acceptedAnswers: acceptedAnswers.length,
+          history: userReputationHistory,
+        };
+
+        resolve(reputationData);
+      }, 400);
+    });
+  },
+
   // Report content (UI only)
+  // eslint-disable-next-line no-unused-vars
   reportContent: (contentId, type, reason) => {
     return new Promise((resolve) => {
       setTimeout(() => {
