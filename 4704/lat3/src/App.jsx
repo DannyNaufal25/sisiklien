@@ -10,6 +10,11 @@ import Mahasiswa from "./Pages/Mahasiswa";
 import MahasiswaDetail from "./Pages/MahasiswaDetail";
 import Kelas from "./Pages/Kelas";
 import RencanaStudi from "./Pages/RencanaStudi";
+import QuizManagement from "./Pages/QuizManagement";
+import QuizBuilder from "./Pages/QuizBuilder";
+import QuizTaking from "./Pages/QuizTaking";
+import QuizResult from "./Pages/QuizResult";
+import QuizAnalytics from "./Pages/QuizAnalytics";
 import AuthLayout from "./Components/templates/AuthLayout";
 import AdminLayout from "./Components/templates/AdminLayout";
 import ProtectedRoute from "./Components/ProtectedRoute";
@@ -44,6 +49,15 @@ createRoot(document.getElementById("root")).render(
           <Route path="mahasiswa/:id" element={<MahasiswaDetail />} />
           <Route path="kelas" element={<Kelas />} />
           <Route path="rencana-studi" element={<RencanaStudi />} />
+          
+          {/* Quiz Routes */}
+          <Route path="quiz" element={<QuizManagement />} />
+          <Route path="quiz/create" element={<QuizBuilder />} />
+          <Route path="quiz/:quizId/edit" element={<QuizBuilder />} />
+          <Route path="quiz/:quizId/preview" element={<QuizTaking />} />
+          <Route path="quiz/:quizId/take" element={<QuizTaking />} />
+          <Route path="quiz/:quizId/result" element={<QuizResult />} />
+          <Route path="quiz/:quizId/analytics" element={<QuizAnalytics />} />
         </Route>
 
   {/* Default Route */}
