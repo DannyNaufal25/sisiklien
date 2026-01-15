@@ -736,34 +736,6 @@ export const quizData = [
     ],
   },
 ];
-    description: "Quiz SQL tingkat lanjut",
-    durasi: 60,
-    nilaiLulus: 80,
-    status: "draft",
-    createdAt: "2026-01-10",
-    questions: [
-      {
-        id: 1,
-        type: "multiple-choice",
-        question: "Apa fungsi dari JOIN dalam SQL?",
-        options: [
-          "Menggabungkan tabel",
-          "Menghapus data",
-          "Membuat tabel baru",
-          "Update record",
-        ],
-        correctAnswer: 0,
-        points: 10,
-      },
-      {
-        id: 2,
-        type: "essay",
-        question: "Jelaskan perbedaan antara INNER JOIN dan LEFT JOIN",
-        points: 25,
-      },
-    ],
-  },
-];
 
 // Quiz Submissions/Results
 export const quizSubmissions = [
